@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>My Feedback History</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+
+<body>
+
+    <div class="container">
+
+        <h1>
+            My Feedback History
+        </h1>
+
+
+        <!-- ==========================================
+             FEEDBACK HISTORY
+        =========================================== -->
+
+        <div
+            class="form-box"
+            id="historyList"
+        >
+
+            <p>
+                Loading feedback history...
+            </p>
+
+        </div>
+
+
+        <!-- ==========================================
+             NAVIGATION BUTTONS
+        =========================================== -->
+
+        <button
+            onclick="window.location.href='feedback.html'"
+        >
+            Submit New Feedback
+        </button>
+
+
+        <button
+            onclick="window.location.href='notifications.html'"
+        >
+            🔔 Notifications
+        </button>
+
+
+        <button
+            onclick="logout()"
+        >
+            Logout
+        </button>
+
+    </div>
+
+
+    <!-- ==========================================
+         HISTORY JAVASCRIPT
+    =========================================== -->
+
+    <script src="history.js"></script>
+
+</body>
+
+</html>

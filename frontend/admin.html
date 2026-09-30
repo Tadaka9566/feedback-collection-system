@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Admin Dashboard</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Admin Dashboard</h1>
+
+
+        <!-- ==========================================
+             STATISTICS
+        =========================================== -->
+
+        <div class="stats-container">
+
+            <div class="stat-card">
+
+                <h3>
+                    Total Feedback
+                </h3>
+
+                <p id="totalFeedback">
+                    0
+                </p>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <h3>
+                    Pending
+                </h3>
+
+                <p id="pendingFeedback">
+                    0
+                </p>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <h3>
+                    Reviewed
+                </h3>
+
+                <p id="reviewedFeedback">
+                    0
+                </p>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <h3>
+                    Resolved
+                </h3>
+
+                <p id="resolvedFeedback">
+                    0
+                </p>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <h3>
+                    Average Rating
+                </h3>
+
+                <p id="averageRating">
+                    0 ⭐
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- ==========================================
+             FEEDBACK SECTION
+        =========================================== -->
+
+        <div class="form-box">
+
+            <h2>
+                All Feedback
+            </h2>
+
+
+            <!-- ==========================================
+                 SEARCH AND FILTER
+            =========================================== -->
+
+            <div class="filter-container">
+
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Search by name, email, category or comments..."
+                >
+
+
+                <select
+                    id="statusFilter"
+                >
+
+                    <option value="All">
+                        All Status
+                    </option>
+
+                    <option value="Pending">
+                        Pending
+                    </option>
+
+                    <option value="Reviewed">
+                        Reviewed
+                    </option>
+
+                    <option value="Resolved">
+                        Resolved
+                    </option>
+
+                </select>
+
+
+                <select
+                    id="categoryFilter"
+                >
+
+                    <option value="All">
+                        All Categories
+                    </option>
+
+                    <option value="Service">
+                        Service
+                    </option>
+
+                    <option value="Product">
+                        Product
+                    </option>
+
+                    <option value="Website">
+                        Website
+                    </option>
+
+                    <option value="Support">
+                        Support
+                    </option>
+
+                    <option value="Other">
+                        Other
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- ==========================================
+                 CHARTS
+            =========================================== -->
+
+            <div class="charts-container">
+
+
+                <!-- STATUS CHART -->
+
+                <div class="chart-box">
+
+                    <h2>
+                        Feedback Status
+                    </h2>
+
+                    <canvas
+                        id="statusChart"
+                    ></canvas>
+
+                </div>
+
+
+                <!-- CATEGORY CHART -->
+
+                <div class="chart-box">
+
+                    <h2>
+                        Feedback by Category
+                    </h2>
+
+                    <canvas
+                        id="categoryChart"
+                    ></canvas>
+
+                </div>
+
+
+                <!-- RATING CHART -->
+
+                <div class="chart-box">
+
+                    <h2>
+                        Rating Distribution
+                    </h2>
+
+                    <canvas
+                        id="ratingChart"
+                    ></canvas>
+
+                </div>
+
+            </div>
+
+
+            <!-- ==========================================
+                 FEEDBACK LIST
+            =========================================== -->
+
+            <div
+                id="adminFeedbackList"
+            >
+
+                <p>
+                    Loading feedback...
+                </p>
+
+            </div>
+
+
+            <!-- ==========================================
+                 NAVIGATION BUTTONS
+            =========================================== -->
+
+            <button
+                onclick="window.location.href='history.html'"
+            >
+                My Feedback
+            </button>
+
+
+            <button
+                onclick="window.location.href='feedback.html'"
+            >
+                Submit Feedback
+            </button>
+
+
+            <button
+                onclick="window.location.href='notifications.html'"
+            >
+                🔔 Notifications
+            </button>
+
+
+            <!-- ==========================================
+                 CSV EXPORT
+            =========================================== -->
+
+            <button
+                onclick="exportCSV()"
+            >
+                Export Feedback CSV
+            </button>
+
+
+            <!-- ==========================================
+                 PDF EXPORT
+            =========================================== -->
+
+            <button
+                onclick="generatePDF()"
+            >
+                Download PDF Report
+            </button>
+
+
+            <!-- ==========================================
+                 LOGOUT
+            =========================================== -->
+
+            <button
+                onclick="logout()"
+            >
+                Logout
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- ==========================================
+         CHART.JS
+    =========================================== -->
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/chart.js"
+    ></script>
+
+
+    <!-- ==========================================
+         JSPDF
+    =========================================== -->
+
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"
+    ></script>
+
+
+    <!-- ==========================================
+         JSPDF AUTOTABLE
+    =========================================== -->
+
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"
+    ></script>
+
+
+    <!-- ==========================================
+         ADMIN JAVASCRIPT
+    =========================================== -->
+
+    <script src="admin.js"></script>
+
+
+    <!-- ==========================================
+         PDF JAVASCRIPT
+    =========================================== -->
+
+    <script src="pdf.js"></script>
+
+</body>
+
+</html>
